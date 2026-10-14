@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#080817">
+<title>Um pedacinho de felicidade ✨</title>
+<style>
+:root{--bg:#080817;--panel:#111126;--pink:#ff83c7;--violet:#a98bff;--text:#f8f4ff;--muted:#c8bfdc;--line:#3b2b5d}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 15% 0%,#241446 0,transparent 42%),radial-gradient(ellipse at 90% 35%,#151b43 0,transparent 38%),var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.45;background-image:radial-gradient(1px 1px at 10% 20%,white 99%,transparent),radial-gradient(1px 1px at 80% 10%,#ffc8ec 99%,transparent),radial-gradient(2px 2px at 45% 75%,white 99%,transparent),radial-gradient(1px 1px at 65% 48%,white 99%,transparent),radial-gradient(1px 1px at 25% 88%,#bba3ff 99%,transparent);background-size:270px 240px;z-index:-1}
+header{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;padding:15px clamp(18px,5vw,64px);background:#080817c9;backdrop-filter:blur(16px);border-bottom:1px solid #ffffff12}
+.brand{font-weight:800;letter-spacing:.3px}.brand span{color:var(--pink)}nav{display:flex;gap:18px}nav a{color:var(--muted);text-decoration:none;font-size:.9rem}nav a:hover{color:var(--pink)}
+main{width:min(1100px,92%);margin:auto}.hero{min-height:76vh;display:grid;place-items:center;text-align:center;position:relative;padding:75px 0 65px}.hero-content{max-width:720px;animation:rise .9s both}.eyebrow{color:var(--pink);text-transform:uppercase;letter-spacing:3px;font-size:.76rem;font-weight:800}.hero h1{font-size:clamp(2.7rem,8vw,5.6rem);line-height:1.03;margin:17px 0;background:linear-gradient(100deg,#fff,#ff9ed7 45%,#b4a1ff);color:transparent;background-clip:text;letter-spacing:-3px}.hero p{font-size:clamp(1rem,2.3vw,1.2rem);color:var(--muted);line-height:1.8;max-width:540px;margin:0 auto 28px}.orb{position:absolute;border-radius:50%;filter:blur(2px);opacity:.55;animation:float 7s ease-in-out infinite}.orb.one{width:100px;height:100px;top:15%;left:6%;background:radial-gradient(circle at 30% 30%,#ff9ed7,#6638a8 70%,transparent)}.orb.two{width:70px;height:70px;right:8%;bottom:15%;background:radial-gradient(circle at 30% 30%,#a7a5ff,#5932b5 70%,transparent);animation-delay:-3s}
+.btn{border:0;cursor:pointer;color:#180d2b;background:linear-gradient(110deg,#ff91ce,#c6a2ff);padding:13px 22px;border-radius:999px;font-weight:800;box-shadow:0 8px 30px #d56bc433;transition:transform .2s,box-shadow .2s}.btn:hover{transform:translateY(-3px);box-shadow:0 12px 36px #d56bc455}.btn.secondary{background:#ffffff0b;color:var(--text);border:1px solid var(--line);box-shadow:none}.section{padding:50px 0;scroll-margin-top:75px}.section-head{text-align:center;margin-bottom:25px}.section-head .icon{font-size:1.8rem}.section h2{font-size:clamp(1.8rem,4vw,2.5rem);margin:8px 0}.section-head p{color:var(--muted);margin:0}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}.card{background:linear-gradient(145deg,#17152eeb,#0d1024eb);border:1px solid var(--line);border-radius:20px;padding:22px;position:relative;overflow:hidden;transition:transform .25s,border-color .25s}.card:after{content:"";position:absolute;width:110px;height:110px;right:-65px;top:-65px;border-radius:50%;background:#b18cff16}.card:hover{transform:translateY(-5px);border-color:#a887e8}.card .big{font-size:1.8rem}.card h3{margin:12px 0 7px}.card p{color:var(--muted);line-height:1.65;margin:0 0 15px;font-size:.95rem}
+.messagebox{max-width:680px;margin:auto;background:linear-gradient(140deg,#17152e,#101126);border:1px solid #5a407b;border-radius:24px;padding:clamp(24px,5vw,42px);text-align:center;box-shadow:0 20px 80px #0003}.messagebox .quote{font-size:clamp(1.15rem,3vw,1.6rem);line-height:1.7;min-height:95px}.messagebox small{color:var(--muted)}
+.game{max-width:760px;margin:auto;text-align:center;padding:26px;border:1px solid var(--line);border-radius:24px;background:linear-gradient(135deg,#13142b,#0c0d20)}.stars{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:22px 0}.star{width:52px;height:52px;border:1px solid #7655a5;background:#201b3e;border-radius:16px;color:#ffb5df;font-size:1.5rem;cursor:pointer;transition:.2s}.star:hover{transform:scale(1.12) rotate(-8deg);background:#382558}.result{color:#ffb9df;min-height:28px;font-weight:700}
+.factlist{display:grid;gap:10px;max-width:760px;margin:auto}.fact{display:flex;gap:13px;align-items:center;text-align:left;padding:16px;border:1px solid var(--line);border-radius:15px;background:#111126}.fact span{font-size:1.4rem}.fact p{margin:0;color:var(--muted);line-height:1.55}
+.final{text-align:center;padding:75px 15px 90px;position:relative}.final .heart{font-size:3rem;display:inline-block;animation:beat 1.4s infinite}.final h2{font-size:clamp(2rem,5vw,3.5rem);background:linear-gradient(100deg,#fff,#ff9ed7,#b4a1ff);background-clip:text;color:transparent}.final p{color:var(--muted);line-height:1.8}
+footer{text-align:center;padding:24px;color:#9488ad;border-top:1px solid #ffffff12;font-size:.85rem}
+.toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,120px);opacity:0;z-index:30;background:#201735;border:1px solid #7957a4;padding:13px 18px;border-radius:14px;box-shadow:0 10px 40px #0008;transition:.35s;max-width:90%;text-align:center}.toast.show{transform:translate(-50%,0);opacity:1}
+.confetti{position:fixed;top:-20px;z-index:25;pointer-events:none;animation:fall 2.8s linear forwards}
+@keyframes rise{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-20px)}}@keyframes beat{0%,100%{transform:scale(1)}50%{transform:scale(1.18)}}@keyframes fall{to{transform:translateY(110vh) rotate(620deg);opacity:0}}
+@media(max-width:720px){nav{gap:10px}nav a{font-size:.78rem}.grid{grid-template-columns:1fr}.hero{min-height:72vh}.orb.one{left:-25px}.orb.two{right:-10px}.section{padding:38px 0}}
+@media(max-width:420px){header{padding:13px 15px}nav a:nth-child(3){display:none}.brand{font-size:.9rem}.hero h1{letter-spacing:-1.5px}}
+</style>
+</head>
+<body>
+<header><div class="brand">✦ <span>Yasmim</span> <span style="color:#fff">·</span> cantinho feliz</div><nav><a href="#inicio">Início</a><a href="#mensagem">Mensagens</a></nav></header>
+<main>
+<section class="hero" id="inicio"><div class="orb one"></div><div class="orb two"></div><div class="hero-content"><div class="eyebrow">uma pausa no meio do dia ✨</div><h1>Oii, Yasmim!</h1><p>Preparei algumas mensagens leves pra trazer um sorriso ao seu dia. Escolhe uma e vê o que aparece. 💜</p><button class="btn" onclick="document.querySelector('#mensagem').scrollIntoView({behavior:'smooth'})">Ver mensagens <span>→</span></button></div></section>
+
+<section class="section" id="mensagem"><div class="section-head"><div class="icon">💌</div><h2>Uma mensagem pra você</h2><p>Toque no botão sempre que quiser ler outra.</p></div><div class="messagebox"><div class="quote" id="quote">Yasmim, espero que hoje aconteça alguma coisinha boa que faça você sorrir sem nem perceber. ✨</div><small>— um recadinho gentil, só porque sim 💜</small><div style="margin-top:22px"><button class="btn" onclick="newMessage()">Outra mensagem ↗</button></div></div></section>
+
+
+
+</main><footer>Um recadinho gentil para deixar o dia mais leve. ✦</footer><div class="toast" id="toast" role="status"></div>
+<script>
+const messages=[
+"Yasmim, espero que hoje aconteça alguma coisinha boa que faça você sorrir sem nem perceber. ✨",
+"Um lembrete aleatório: você não precisa ser perfeita pra ser incrível. 💜",
+"Que apareça uma notícia boa, uma música legal e um motivo bobo pra rir hoje. ☀️",
+"Se o dia estiver corrido, faz uma pausa. Você também merece um pouquinho de tranquilidade. ☁️",
+"Missão de hoje: encontrar pelo menos uma coisa pequena que deixe seu coração feliz. 🌷",
+"Não subestime o quanto um sorriso seu pode deixar o ambiente mais leve. 😊",
+"Que hoje a sorte te encontre distraída e te entregue uma surpresa boa. 🌟",
+"Você chegou até aqui. Isso já é motivo pra se dar um pouquinho de crédito. 🫶"
+];let last=-1,toastTimer;
+function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),3200)}
+function newMessage(){let n;do{n=Math.floor(Math.random()*messages.length)}while(n===last&&messages.length>1);last=n;const q=document.getElementById('quote');q.style.opacity=0;q.style.transform='translateY(8px)';setTimeout(()=>{q.textContent=messages[n];q.style.transition='.3s';q.style.opacity=1;q.style.transform='translateY(0)'},180);toast('💌 Uma nova mensagem chegou!')}
+</script>
+</body></html>
