@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FIFA 13 • Sorteio de duplas</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#080d12;--panel:#111b24;--panel2:#172630;--line:#2c414b;--white:#f4f7f8;--muted:#9aadb5;--lime:#b6ef32;--gold:#f5c84b;--red:#ed554b}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;color:var(--white);font-family:Arial,Helvetica,sans-serif;background:radial-gradient(ellipse at 50% -15%,#34515a 0%,#15252d 36%,#080d12 76%);overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.13;background:repeating-linear-gradient(135deg,transparent 0 38px,#8ca0a8 39px 40px,transparent 41px 78px)}
+main{position:relative;max-width:1100px;margin:auto;padding:34px 22px 60px}
+.topline{display:flex;align-items:center;gap:12px;margin-bottom:22px}
+.brand{font-size:.75rem;font-weight:900;letter-spacing:.2em;color:var(--lime);border:1px solid #718c36;padding:7px 10px;transform:skew(-8deg)}
+.edition{font-size:.72rem;letter-spacing:.22em;color:var(--muted);font-weight:700}
+.hero{padding:25px 26px 28px;border-left:5px solid var(--lime);background:linear-gradient(110deg,rgba(20,36,44,.96),rgba(11,19,25,.75));box-shadow:0 18px 50px #0005;margin-bottom:22px}
+.kicker{color:var(--lime);font-size:.75rem;font-weight:800;letter-spacing:.28em;margin:0 0 7px}
+h1{font-size:clamp(3.2rem,10vw,6.6rem);line-height:.82;letter-spacing:-.055em;font-weight:1000;font-style:italic;margin:0;text-transform:uppercase;text-shadow:4px 5px 0 #0008}
+h1 span{color:var(--lime)}
+.sub{color:#bdcbd0;margin:15px 0 0;font-size:1rem}
+.grid{display:grid;grid-template-columns:1fr 1.15fr;gap:18px}
+.card{background:linear-gradient(145deg,rgba(22,35,44,.98),rgba(12,20,27,.98));border:1px solid var(--line);border-radius:5px;padding:20px;box-shadow:0 15px 35px #0004}
+h2{font-size:1.15rem;letter-spacing:.12em;text-transform:uppercase;margin:0 0 14px;font-weight:900}
+h2:before{content:"";display:inline-block;width:7px;height:18px;background:var(--lime);margin-right:9px;vertical-align:-3px;transform:skew(-12deg)}
+label,.count{color:var(--muted);font-size:.85rem}
+textarea{width:100%;min-height:245px;resize:vertical;margin-top:8px;padding:13px 14px;background:#0a1218;border:1px solid #344b55;border-radius:3px;color:var(--white);font:600 1rem/1.8 Arial,sans-serif;outline:none}
+textarea:focus{border-color:var(--lime);box-shadow:0 0 0 2px #b6ef3222}
+.rule{margin:13px 0 0;padding:10px 12px;border-left:3px solid var(--gold);background:#f5c84b12;color:#e7d9a9;font-size:.86rem}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px}
+.count{flex:1}
+button{font:800 .88rem Arial,sans-serif;letter-spacing:.05em;text-transform:uppercase;border:0;border-radius:3px;cursor:pointer;padding:14px 17px;transition:transform .15s,filter .15s}
+button:hover:not(:disabled){filter:brightness(1.1);transform:translateY(-2px)}
+button:disabled{opacity:.45;cursor:not-allowed}
+.go{background:var(--lime);color:#17200a;flex:1;font-size:1rem;box-shadow:0 5px 0 #718f1e}
+.ghost{background:transparent;color:var(--muted);border:1px solid #536873}
+.stage{min-height:158px;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;margin-bottom:18px;background:linear-gradient(135deg,#263c43,#0a1319);border:1px solid #526970;position:relative;overflow:hidden;font-size:clamp(1.8rem,6vw,3.3rem);font-weight:1000;font-style:italic;letter-spacing:-.04em;text-transform:uppercase;overflow-wrap:anywhere}
+.stage:after{content:"FIFA 13";position:absolute;right:10px;bottom:5px;font-size:.65rem;letter-spacing:.2em;color:#ffffff35;font-style:normal}
+.stage.spin{color:var(--lime)}
+.stage.hint{font-size:1rem;color:var(--muted);font-style:normal;letter-spacing:0;text-transform:none}
+.duplas,.jogos{list-style:none;margin:0 0 18px;padding:0;display:grid;gap:9px}
+.dupla{display:flex;align-items:center;gap:14px;padding:13px 14px;background:linear-gradient(100deg,#b6ef32,#d3ff6a);color:#17200a;animation:pop .28s ease-out;clip-path:polygon(0 0,100% 0,97% 100%,0 100%)}
+.dupla b{font-size:.76rem;letter-spacing:.1em;white-space:nowrap}
+.dupla span{font-size:1.15rem;font-weight:900;text-transform:uppercase;overflow-wrap:anywhere}
+.reserva{background:linear-gradient(100deg,#e34f45,#f07a63);color:white}
+.jogo{border:1px solid #3a515b;background:#0c151c;padding:12px 14px;display:flex;flex-wrap:wrap;gap:7px 12px;align-items:center}
+.jogo b{color:var(--lime);font-size:.8rem;letter-spacing:.1em}
+.jogo span{font-weight:800}
+.jogo em{font-style:normal;color:var(--gold);font-weight:900}
+.section-label{margin-top:22px}
+@keyframes pop{from{transform:translateX(-10px);opacity:0}to{transform:none;opacity:1}}
+@media(max-width:760px){main{padding:22px 15px 42px}.grid{grid-template-columns:1fr}.hero{padding:22px 18px}.card{padding:17px}textarea{min-height:190px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<main>
+  <div class="topline"><div class="brand">EA SPORTS</div><div class="edition">FIFA 13 · MATCH DAY</div></div>
+  <header class="hero">
+    <p class="kicker">TORNEIO ENTRE AMIGOS</p>
+    <h1>FIFA <span>13</span></h1>
+    <p class="sub">Sorteio oficial das duplas · Partidas 2 contra 2</p>
+  </header>
+  <div class="grid">
+    <section class="card">
+      <h2>Elenco de jogadores</h2>
+      <label for="names">Adicione um jogador por linha</label>
+      <textarea id="names">Alessandro
+Jean
+Mateus
+Biel
+Jairo
+Luan
+Michel</textarea>
+      <p class="rule">Dupla definida: Luan + Michel. Eles serão sorteados juntos na primeira rodada.</p>
+      <div class="row"><span class="count" id="count"></span><button class="ghost" id="reset" type="button">Reiniciar</button></div>
+    </section>
+    <section class="card">
+      <div class="stage hint" id="stage" aria-live="polite">A dupla da vez vai aparecer aqui.</div>
+      <div class="row" style="margin:0 0 22px"><button class="go" id="one" type="button">Sortear próxima dupla</button></div>
+      <h2>Duplas formadas</h2>
+      <ol class="duplas" id="duplas"></ol>
+      <h2 class="section-label" id="jogosTitle" hidden>Confrontos</h2>
+      <ul class="jogos" id="jogos"></ul>
+    </section>
+  </div>
+</main>
+<script>
+(function(){
+  var $=function(i){return document.getElementById(i)};
+  var names=$('names'),count=$('count'),stage=$('stage'),one=$('one'),duplasEl=$('duplas'),jogosEl=$('jogos'),jt=$('jogosTitle');
+  var duplas=[],reserva=null,busy=false;
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function rnd(n){var a=new Uint32Array(1),max=Math.floor(4294967296/n)*n;do{crypto.getRandomValues(a)}while(a[0]>=max);return a[0]%n}
+  function list(){var seen={},out=[];names.value.split(/\n/).forEach(function(s){s=s.trim();var k=s.toLowerCase();if(s&&!seen[k]){seen[k]=1;out.push(s)}});return out}
+  function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
+  function render(){
+    duplasEl.innerHTML='';jogosEl.innerHTML='';
+    duplas.forEach(function(d,i){var li=el('li','dupla');li.appendChild(el('b',null,'Dupla '+(i+1)));li.appendChild(el('span',null,d[0]+' + '+d[1]));duplasEl.appendChild(li)});
+    if(reserva){var r=el('li','dupla reserva');r.appendChild(el('b',null,'Reserva'));r.appendChild(el('span',null,reserva));duplasEl.appendChild(r)}
+    for(var i=0;i<duplas.length;i+=2){
+      var li=el('li','jogo'),n=i/2+1;
+      li.appendChild(el('b',null,'Jogo '+n));
+      if(duplas[i+1]){li.appendChild(el('span',null,duplas[i].join(' + ')));li.appendChild(el('em',null,'x'));li.appendChild(el('span',null,duplas[i+1].join(' + ')))}
+      else{li.appendChild(el('span',null,duplas[i].join(' + ')));li.appendChild(el('em',null,'espera um adversário'))}
+      jogosEl.appendChild(li);
+    }
+    jt.hidden=!duplas.length;
+    update();
+  }
+  function update(){
+    var n=list().length,total=n+duplas.length*2+(reserva?1:0);
+    count.textContent=total+(total===1?' jogador':' jogadores')+' · '+duplas.length+(duplas.length===1?' dupla':' duplas')+(reserva?' · 1 reserva':'');
+    var can=!busy&&n>=2;one.disabled=!can;one.textContent=(!busy&&n<2&&duplas.length)?'Sorteio concluído':'Sortear próxima dupla';
+  }
+  names.addEventListener('input',update);
+  $('reset').addEventListener('click',function(){
+    if(busy)return;
+    var back=[];duplas.forEach(function(d){back.push(d[0],d[1])});if(reserva)back.push(reserva);
+    names.value=back.concat(list()).join('\n');
+    duplas=[];reserva=null;stage.className='stage hint';stage.textContent='A dupla sorteada aparece aqui.';render();
+  });
+  var BAN=[['luan','jean'],['luan','jairo'],['luan','biel']];
+  function okPair(a,b){a=a.toLowerCase();b=b.toLowerCase();return !BAN.some(function(p){return (p[0]===a&&p[1]===b)||(p[0]===b&&p[1]===a)})}
+  function canFinish(p){if(p.length<2)return true;for(var i=0;i<p.length;i++)for(var j=i+1;j<p.length;j++){if(okPair(p[i],p[j])&&canFinish(p.filter(function(_,k){return k!==i&&k!==j})))return true}return false}
+  function draw(cb){
+    var pool=list();if(pool.length<2){return cb&&cb()}
+    var ch,pickA,pickB;
+    if(duplas.length===0){
+      var li=pool.findIndex(function(n){return n.toLowerCase()==='luan'});
+      var mi=pool.findIndex(function(n){return n.toLowerCase()==='michel'});
+      if(li<0||mi<0||li===mi){stage.className='stage hint';stage.textContent='Adicione Luan e Michel à lista para formar a dupla definida.';return cb&&cb()}
+      pickA=pool[li];pickB=pool[mi];
+      pool=pool.filter(function(_,k){return k!==li&&k!==mi});
+    }else{
+      ch=[rnd(pool.length)];
+      var first=ch[0],second=(first+1+rnd(pool.length-1))%pool.length;
+      pickA=pool[first];pickB=pool[second];
+      pool=pool.filter(function(_,k){return k!==first&&k!==second});
+    }
+    var base=list(),steps=reduce?0:20,t=0;
+    busy=true;update();stage.className='stage spin';
+    (function tick(){
+      if(t<steps){stage.textContent=base[rnd(base.length)]+' + '+base[rnd(base.length)];t++;setTimeout(tick,45+t*t*.6)}
+      else{
+        stage.className='stage';stage.textContent=pickA+' + '+pickB;
+        duplas.push([pickA,pickB]);
+        if(pool.length===1){reserva=pool[0];pool=[]}
+        names.value=pool.join('\n');busy=false;render();
+        if(cb)setTimeout(cb,600);
+      }
+    })();
+  }
+  one.addEventListener('click',function(){draw()});
+  render();
+})();
+</script>
+</body>
+</html>
