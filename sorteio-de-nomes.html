@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sorteio de duplas 2v2</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--g1:#1f8a3b;--g2:#25993f;--line:rgba(255,255,255,.6);--board:#0d2616;--board-ink:#f4fff6;--muted:#a9d8b5;--edge:#2f6b43;--yellow:#ffd23f;--yellow-ink:#2a2200;--red:#e5412d;--field:#14351f;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--g1:#0f4a22;--g2:#135a29;--board:#06150c;--edge:#1f4a2e;--field:#0a2013;color-scheme:dark}}
+:root[data-theme="dark"]{--g1:#0f4a22;--g2:#135a29;--board:#06150c;--edge:#1f4a2e;--field:#0a2013;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;min-height:100vh;color:var(--board-ink);font-family:"Barlow",system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.5;background:var(--g1) repeating-linear-gradient(90deg,var(--g1) 0 70px,var(--g2) 70px 140px)}
+body::after{content:"";position:fixed;inset:8px;border:3px solid var(--line);border-radius:6px;pointer-events:none}
+main{position:relative;max-width:1000px;margin:0 auto;padding:34px 22px 56px}
+h1{font-family:"Bebas Neue",Impact,"Arial Narrow",sans-serif;font-weight:400;font-size:clamp(3rem,10vw,5.6rem);line-height:.9;margin:0 0 6px;letter-spacing:.02em;text-shadow:0 3px 0 rgba(0,0,0,.25)}
+.sub{margin:0 0 24px;max-width:46ch;font-size:1.1rem}
+.grid{display:grid;gap:18px;grid-template-columns:1fr}
+@media(min-width:820px){.grid{grid-template-columns:1fr 1.2fr}}
+.card{background:var(--board);border:2px solid var(--edge);border-radius:12px;padding:18px}
+h2{font-family:"Bebas Neue",Impact,sans-serif;font-weight:400;font-size:1.7rem;letter-spacing:.04em;margin:0 0 8px}
+textarea{width:100%;min-height:230px;resize:vertical;font:inherit;font-size:1.05rem;color:var(--board-ink);background:var(--field);border:2px solid var(--edge);border-radius:8px;padding:10px 12px}
+textarea:focus-visible,button:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:10px}
+.count{color:var(--muted);font-size:.95rem}
+button{font:inherit;font-weight:700;border:0;border-radius:8px;cursor:pointer;padding:12px 18px}
+button:disabled{opacity:.45;cursor:not-allowed}
+.go{background:var(--yellow);color:var(--yellow-ink);font-size:1.1rem;flex:1 1 200px}
+.alt{background:transparent;color:var(--board-ink);border:2px solid var(--line);flex:1 1 200px}
+.ghost{background:transparent;color:var(--muted);border:2px solid var(--edge);padding:8px 14px;margin-left:auto}
+.stage{min-height:140px;display:flex;align-items:center;justify-content:center;text-align:center;background:var(--field);border:2px solid var(--edge);border-radius:10px;padding:14px;margin-bottom:14px;font-family:"Bebas Neue",Impact,sans-serif;font-size:clamp(2rem,7vw,3.2rem);line-height:1;letter-spacing:.03em;overflow-wrap:anywhere}
+.stage.spin{color:var(--muted)}
+.stage.hint{font-family:"Barlow",system-ui,sans-serif;font-size:1.05rem;color:var(--muted);letter-spacing:0}
+.duplas,.jogos{list-style:none;margin:0 0 14px;padding:0;display:grid;gap:8px}
+.dupla{background:var(--yellow);color:var(--yellow-ink);border-radius:8px;padding:10px 14px;display:flex;gap:12px;align-items:baseline;animation:pop .3s ease-out}
+.dupla b{font-family:"Bebas Neue",Impact,sans-serif;font-weight:400;font-size:1.3rem;letter-spacing:.04em;white-space:nowrap}
+.dupla span{font-weight:700;font-size:1.2rem;overflow-wrap:anywhere}
+.reserva{background:var(--red);color:#fff}
+.jogo{border:2px solid var(--line);border-radius:8px;padding:8px 14px;display:flex;flex-wrap:wrap;gap:6px 12px;align-items:baseline}
+.jogo b{font-family:"Bebas Neue",Impact,sans-serif;font-weight:400;font-size:1.2rem;letter-spacing:.04em;color:var(--yellow)}
+.jogo em{font-style:normal;color:var(--muted)}
+@keyframes pop{from{transform:scale(.94);opacity:0}to{transform:none;opacity:1}}
+@media(prefers-reduced-motion:reduce){.dupla{animation:none}}
+</style>
+</head>
+<body>
+<main>
+  <h1>Sorteio de duplas 2v2</h1>
+  <p class="sub">Cada sorteio escolhe duas pessoas. As duplas formadas se enfrentam em jogos de 2 contra 2.</p>
+  <div class="grid">
+    <section class="card">
+      <h2>Jogadores</h2>
+      <label for="names" class="count">Um nome por linha</label>
+      <textarea id="names">Alessandro
+Jean
+Mateus
+Biel
+Jairo
+Luan
+Michel</textarea>
+      <p class="count" style="margin:10px 0 0">Regra: Luan não cai com Jean, Jairo nem Biel.</p>
+      <div class="row"><span class="count" id="count"></span><button class="ghost" id="reset" type="button">Recomeçar</button></div>
+    </section>
+    <section class="card">
+      <div class="stage hint" id="stage" aria-live="polite">A dupla sorteada aparece aqui.</div>
+      <div class="row" style="margin:0 0 16px">
+        <button class="go" id="one" type="button">Sortear próxima dupla</button>
+      </div>
+      <h2>Duplas</h2>
+      <ol class="duplas" id="duplas"></ol>
+      <h2 id="jogosTitle" hidden>Jogos</h2>
+      <ul class="jogos" id="jogos"></ul>
+    </section>
+  </div>
+</main>
+<script>
+(function(){
+  var $=function(i){return document.getElementById(i)};
+  var names=$('names'),count=$('count'),stage=$('stage'),one=$('one'),duplasEl=$('duplas'),jogosEl=$('jogos'),jt=$('jogosTitle');
+  var duplas=[],reserva=null,busy=false;
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function rnd(n){var a=new Uint32Array(1),max=Math.floor(4294967296/n)*n;do{crypto.getRandomValues(a)}while(a[0]>=max);return a[0]%n}
+  function list(){var seen={},out=[];names.value.split(/\n/).forEach(function(s){s=s.trim();var k=s.toLowerCase();if(s&&!seen[k]){seen[k]=1;out.push(s)}});return out}
+  function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
+  function render(){
+    duplasEl.innerHTML='';jogosEl.innerHTML='';
+    duplas.forEach(function(d,i){var li=el('li','dupla');li.appendChild(el('b',null,'Dupla '+(i+1)));li.appendChild(el('span',null,d[0]+' + '+d[1]));duplasEl.appendChild(li)});
+    if(reserva){var r=el('li','dupla reserva');r.appendChild(el('b',null,'Reserva'));r.appendChild(el('span',null,reserva));duplasEl.appendChild(r)}
+    for(var i=0;i<duplas.length;i+=2){
+      var li=el('li','jogo'),n=i/2+1;
+      li.appendChild(el('b',null,'Jogo '+n));
+      if(duplas[i+1]){li.appendChild(el('span',null,duplas[i].join(' + ')));li.appendChild(el('em',null,'x'));li.appendChild(el('span',null,duplas[i+1].join(' + ')))}
+      else{li.appendChild(el('span',null,duplas[i].join(' + ')));li.appendChild(el('em',null,'espera um adversário'))}
+      jogosEl.appendChild(li);
+    }
+    jt.hidden=!duplas.length;
+    update();
+  }
+  function update(){
+    var n=list().length,total=n+duplas.length*2+(reserva?1:0);
+    count.textContent=total+(total===1?' jogador':' jogadores')+' · '+duplas.length+(duplas.length===1?' dupla':' duplas')+(reserva?' · 1 reserva':'');
+    var can=!busy&&n>=2;one.disabled=!can;one.textContent=(!busy&&n<2&&duplas.length)?'Sorteio concluído':'Sortear próxima dupla';
+  }
+  names.addEventListener('input',update);
+  $('reset').addEventListener('click',function(){
+    if(busy)return;
+    var back=[];duplas.forEach(function(d){back.push(d[0],d[1])});if(reserva)back.push(reserva);
+    names.value=back.concat(list()).join('\n');
+    duplas=[];reserva=null;stage.className='stage hint';stage.textContent='A dupla sorteada aparece aqui.';render();
+  });
+  var BAN=[['luan','jean'],['luan','jairo'],['luan','biel']];
+  function okPair(a,b){a=a.toLowerCase();b=b.toLowerCase();return !BAN.some(function(p){return (p[0]===a&&p[1]===b)||(p[0]===b&&p[1]===a)})}
+  function canFinish(p){if(p.length<2)return true;for(var i=0;i<p.length;i++)for(var j=i+1;j<p.length;j++){if(okPair(p[i],p[j])&&canFinish(p.filter(function(_,k){return k!==i&&k!==j})))return true}return false}
+  function draw(cb){
+    var pool=list();if(pool.length<2){return cb&&cb()}
+    var opts=[];
+    for(var i=0;i<pool.length;i++)for(var j=i+1;j<pool.length;j++){if(okPair(pool[i],pool[j])&&canFinish(pool.filter(function(_,k){return k!==i&&k!==j})))opts.push([i,j])}
+    if(!opts.length){stage.className='stage hint';stage.textContent='Nenhuma dupla possível com as regras. Mude os nomes ou recomece.';return cb&&cb()}
+    var ch=opts[rnd(opts.length)],pickA=pool[ch[0]],pickB=pool[ch[1]];
+    pool=pool.filter(function(_,k){return k!==ch[0]&&k!==ch[1]});
+    var base=list(),steps=reduce?0:20,t=0;
+    busy=true;update();stage.className='stage spin';
+    (function tick(){
+      if(t<steps){stage.textContent=base[rnd(base.length)]+' + '+base[rnd(base.length)];t++;setTimeout(tick,45+t*t*.6)}
+      else{
+        stage.className='stage';stage.textContent=pickA+' + '+pickB;
+        duplas.push([pickA,pickB]);
+        if(pool.length===1){reserva=pool[0];pool=[]}
+        names.value=pool.join('\n');busy=false;render();
+        if(cb)setTimeout(cb,600);
+      }
+    })();
+  }
+  one.addEventListener('click',function(){draw()});
+  render();
+})();
+</script>
+</body>
+</html>
