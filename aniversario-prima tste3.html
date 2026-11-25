@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Feliz aniversário, prima! 🎂</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap');
+
+:root{
+  --rose:#b8577f; --ink:#6b4f6e; --plum:#4a2c4f; --gold:#c9995a;
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .38 0 0 0 0 .42 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:'Cormorant Garamond',Georgia,serif; color:var(--plum); overflow-x:hidden;
+  min-height:100vh; min-height:100dvh;
+  background:
+    radial-gradient(circle at 15% 15%, #fff 0%, transparent 42%),
+    radial-gradient(circle at 90% 85%, #f9e3d0 0%, transparent 45%),
+    linear-gradient(170deg,#fff9f6 0%,#fbe6ec 55%,#f8ecdf 100%);
+}
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:.01s!important;animation-delay:0s!important;transition-duration:.01s!important}
+}
+
+#bg{position:fixed; inset:0; width:100%; height:100%; z-index:0; pointer-events:none}
+
+/* Flores nos cantos */
+.fl{position:fixed; width:clamp(74px,15vw,140px); aspect-ratio:1; height:auto; opacity:.85; z-index:0; pointer-events:none;
+  transform:rotate(var(--r,0deg)); animation:sway 9s ease-in-out infinite}
+@keyframes sway{50%{transform:rotate(calc(var(--r,0deg) + 9deg))}}
+.c1{top:-20px; left:-20px} .c2{top:-20px; right:-20px; --r:90deg}
+.c3{bottom:-20px; left:-20px; --r:-90deg} .c4{bottom:-20px; right:-20px; --r:180deg}
+
+/* Tela inicial */
+.intro{position:relative; z-index:1; min-height:100vh; min-height:100dvh; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; text-align:center; gap:clamp(10px,2.2vh,20px); padding:40px 18px}
+.eyebrow{font-style:italic; font-size:clamp(1.1rem,2.6vw,1.35rem); color:#8a6a86; animation:rise 1.4s ease .2s both}
+h1{font-family:'Pinyon Script',cursive; font-weight:400; font-size:clamp(2.6rem,8.5vw,5rem); line-height:1.1; color:var(--rose);
+  text-shadow:0 2px 20px #fff; animation:rise 1.6s ease .6s both}
+.lead{font-size:clamp(1.15rem,2.6vw,1.4rem); max-width:28ch; line-height:1.5; color:var(--ink); animation:rise 1.6s ease 1s both}
+.hint{margin-top:8px; font-size:clamp(1.1rem,2.4vw,1.3rem); color:var(--plum); animation:rise 1.4s ease 1.6s both}
+.cd-box{display:flex; flex-direction:column; align-items:center; gap:2px; animation:cdOut .5s ease 5s both}
+.cd-box.done{opacity:0}
+.cd-label{font-style:italic; font-size:clamp(1.05rem,2.4vw,1.25rem); color:#8a6a86; animation:rise 1.4s ease 1.4s both}
+.cd{font-family:'Pinyon Script',cursive; font-size:clamp(2.6rem,7vw,3.4rem); line-height:1.1; color:var(--rose); text-align:center; position:relative; height:1.1em}
+.cd b{position:absolute; left:0; right:0; top:0; font-weight:400; opacity:0; animation:cdStep 1s step-end forwards}
+.cd b:nth-child(2){animation-delay:1s} .cd b:nth-child(3){animation-delay:2s} .cd b:nth-child(4){animation-delay:3s} .cd b:nth-child(5){animation-delay:4s}
+@keyframes cdStep{from{opacity:1}to{opacity:0}}
+@keyframes cdOut{from{opacity:1}to{opacity:0}}
+
+/* Envelope */
+.env{all:unset; position:relative; display:block; width:min(78vw,360px); aspect-ratio:1.5; cursor:pointer;
+  perspective:1000px; filter:drop-shadow(0 22px 28px rgba(120,60,90,.25)); animation:drift 5s ease-in-out infinite;
+  transition:transform .9s ease; margin:14px 0 6px; touch-action:manipulation; -webkit-tap-highlight-color:transparent}
+.env:focus-visible{outline:2px dashed var(--gold); outline-offset:10px}
+.env:hover .seal{transform:translate(-50%,-50%) scale(1.06)}
+.env.open{animation:none; transform:translateY(-10px)}
+@keyframes drift{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.env span{position:absolute; display:block}
+.paper{left:6%; right:6%; top:9%; bottom:8%; z-index:1; border-radius:4px;
+  background:var(--grain), linear-gradient(#fffdfa,#fbf4f6);
+  box-shadow:inset 0 0 0 6px #fffdf9, inset 0 0 0 7px rgba(217,168,108,.5);
+  animation:paperUp 1.2s cubic-bezier(.2,.8,.2,1) 5.7s forwards}
+@keyframes paperUp{to{transform:translateY(-62%)}}
+.back{inset:0; z-index:2; border-radius:8px; background:var(--grain), linear-gradient(160deg,#fdf6f8,#f3d5e0);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.7)}
+.front{inset:0; z-index:3; border-radius:8px; background:var(--grain), linear-gradient(170deg,#fbe9ee,#f0c9d7);
+  clip-path:polygon(0 0,50% 54%,100% 0,100% 100%,0 100%)}
+.flap{left:0; top:0; width:100%; height:56%; z-index:4; background:var(--grain), linear-gradient(#fbe3ea,#eec3d2);
+  clip-path:polygon(0 0,100% 0,50% 100%); transform-origin:50% 0;
+  animation:flapOpen .9s cubic-bezier(.6,0,.25,1) 5s forwards}
+@keyframes flapOpen{to{transform:rotateX(180deg); z-index:0}}
+.seal{left:50%; top:55%; transform:translate(-50%,-50%); z-index:5; width:clamp(46px,12vw,58px); aspect-ratio:1;
+  border-radius:50%; display:grid; place-items:center; color:#fff8ec; font-size:1.3rem;
+  background:radial-gradient(circle at 35% 30%,#f9e7b5,#d9a86c 60%,#a9773a);
+  box-shadow:0 6px 18px rgba(150,95,40,.35); animation:sealOut .4s ease 5s forwards}
+@keyframes sealOut{to{opacity:0; transform:translate(-50%,-50%) scale(.3)}}
+.env.open .flap{transform:rotateX(180deg); z-index:0}
+.env.open .paper{transform:translateY(-62%)}
+.env.open .seal{opacity:0; transform:translate(-50%,-50%) scale(.3)}
+
+/* Overlay da carta */
+.letter-wrap{position:fixed; inset:0; z-index:20; display:grid; place-items:center; padding:14px;
+  background:rgba(92,46,72,.32); -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px);
+  opacity:0; visibility:hidden; animation:lwIn .8s ease 6.9s forwards}
+@keyframes lwIn{to{opacity:1; visibility:visible}}
+.letter-wrap.show{opacity:1; visibility:visible}
+.letter{position:relative; width:min(94vw,640px); max-height:88vh; max-height:88dvh; display:flex; flex-direction:column;
+  border-radius:20px; padding:clamp(26px,6vw,54px) clamp(22px,7vw,60px) 26px; overflow:hidden;
+  background:var(--grain), radial-gradient(circle at 80% 0%,#fff 0,transparent 55%), linear-gradient(170deg,#fffcf8,#fdf2ee 60%,#fbe8ee);
+  box-shadow:0 40px 90px rgba(90,40,70,.35), 0 0 60px rgba(232,191,116,.25);
+  transform:translateY(60px) scale(.5); opacity:0;
+  animation:letterUp 1.4s cubic-bezier(.16,.9,.3,1) 6.9s forwards}
+@keyframes letterUp{to{transform:none; opacity:1}}
+.letter-wrap.show .letter{transform:none; opacity:1}
+.letter::before{content:""; position:absolute; inset:12px; border:1px solid rgba(217,168,108,.55); border-radius:12px; pointer-events:none}
+.letter .fl{position:absolute; width:clamp(56px,11vw,78px); z-index:2; animation:none; opacity:.8}
+.l1{top:-12px; left:-12px; --r:-20deg} .l2{bottom:-12px; right:-12px; --r:160deg}
+.lbody{position:relative; z-index:1; flex:1; min-height:0; overflow-y:auto; padding:6px 6px 4px; text-align:left}
+
+.rv{opacity:0}
+.rv{animation:rise 1.1s ease calc(var(--d) + 6.9s) both}
+@keyframes rise{from{opacity:0; transform:translateY(14px); filter:blur(3px)} to{opacity:1; transform:none; filter:none}}
+
+.head{font-family:'Pinyon Script',cursive; font-size:clamp(1.9rem,5.2vw,2.5rem); line-height:1.3; color:var(--rose); margin-bottom:16px}
+.txt{font-size:clamp(1.2rem,2.7vw,1.4rem); line-height:1.7; color:var(--ink); margin-bottom:14px}
+.big{font-family:'Pinyon Script',cursive; font-size:clamp(1.6rem,4.2vw,2.1rem); line-height:1.4; color:var(--rose)}
+
+.sig{margin-top:18px; text-align:right}
+.who{font-style:italic; font-size:clamp(1.2rem,2.6vw,1.35rem); color:var(--ink)}
+.signame{display:inline-block; font-family:'Pinyon Script',cursive; font-size:clamp(2.2rem,6vw,3rem); color:var(--rose);
+  clip-path:inset(-20% 100% -20% 0)}
+.signame{animation:write 2.4s ease calc(var(--d) + 6.9s) both}
+@keyframes write{to{clip-path:inset(-20% 0 -20% 0)}}
+
+.final{margin-top:26px; padding-top:20px; text-align:center; border-top:1px solid rgba(217,168,108,.45)}
+.btn-hug{margin-top:14px; cursor:pointer; border:0; padding:12px 28px; border-radius:999px;
+  font:600 1.2rem 'Cormorant Garamond',Georgia,serif; color:var(--plum);
+  background:linear-gradient(135deg,#fff,#f8dfe7); box-shadow:0 10px 26px rgba(180,90,130,.25);
+  transition:transform .3s ease, box-shadow .3s ease}
+.btn-hug:hover{transform:translateY(-3px); box-shadow:0 14px 34px rgba(180,90,130,.38)}
+.btn-hug:focus-visible,.music:focus-visible{outline:2px dashed var(--gold); outline-offset:4px}
+.hugmsg{min-height:1.6em; margin-top:10px; font-family:'Pinyon Script',cursive; font-size:clamp(1.5rem,4vw,1.9rem); color:var(--rose); opacity:0; transition:opacity .8s ease}
+.hugmsg.on{opacity:1}
+
+/* Música */
+.music{position:fixed; top:max(14px,env(safe-area-inset-top)); right:14px; z-index:30; cursor:pointer; border:0;
+  padding:9px 16px; border-radius:999px; background:rgba(255,255,255,.85); color:var(--plum);
+  font:600 1rem 'Cormorant Garamond',Georgia,serif; box-shadow:0 6px 18px rgba(180,100,140,.18);
+  -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px)}
+.music[hidden]{display:none}
+</style>
+
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <radialGradient id="pg"><stop offset="0" stop-color="#fffafb"/><stop offset="1" stop-color="#eeb0c3"/></radialGradient>
+    <g id="fl">
+      <g fill="url(#pg)" stroke="#e2a0b5" stroke-width="1">
+        <ellipse cx="0" cy="-26" rx="17" ry="25"/>
+        <ellipse cx="0" cy="-26" rx="17" ry="25" transform="rotate(72)"/>
+        <ellipse cx="0" cy="-26" rx="17" ry="25" transform="rotate(144)"/>
+        <ellipse cx="0" cy="-26" rx="17" ry="25" transform="rotate(216)"/>
+        <ellipse cx="0" cy="-26" rx="17" ry="25" transform="rotate(288)"/>
+      </g>
+      <circle r="10" fill="#e7bf74"/><circle r="4" fill="#b98440"/>
+    </g>
+  </defs>
+</svg>
+
+<canvas id="bg" aria-hidden="true"></canvas>
+<svg class="fl c1" viewBox="-54 -54 108 108" aria-hidden="true"><use href="#fl"/></svg>
+<svg class="fl c2" viewBox="-54 -54 108 108" aria-hidden="true"><use href="#fl"/></svg>
+<svg class="fl c3" viewBox="-54 -54 108 108" aria-hidden="true"><use href="#fl"/></svg>
+<svg class="fl c4" viewBox="-54 -54 108 108" aria-hidden="true"><use href="#fl"/></svg>
+
+<button class="music" id="music" hidden aria-pressed="false">🎵 Ativar música</button>
+
+<main class="intro">
+  <p class="eyebrow">Uma surpresa especial para você...</p>
+  <h1>Feliz aniversário, prima!</h1>
+  <p class="lead">Preparei algo especial para tornar seu dia ainda mais bonito.</p>
+
+  <button class="env" id="env" aria-label="Abrir a carta" aria-expanded="false">
+    <span class="paper"></span>
+    <span class="back"></span>
+    <span class="front"></span>
+    <span class="flap"></span>
+    <span class="seal">♥</span>
+  </button>
+
+  <div class="cd-box" id="cdBox">
+    <p class="cd-label">Sua carta abre em</p>
+    <p class="cd"><b>5</b><b>4</b><b>3</b><b>2</b><b>1</b></p>
+    <p class="hint">Sua surpresa já vai abrir 💌</p>
+</div>
+</main>
+
+<section class="letter-wrap" id="lw" aria-hidden="true">
+  <article class="letter" role="dialog" aria-modal="true" aria-label="Carta para a prima">
+    <svg class="fl l1" viewBox="-54 -54 108 108" aria-hidden="true"><use href="#fl"/></svg>
+    <svg class="fl l2" viewBox="-54 -54 108 108" aria-hidden="true"><use href="#fl"/></svg>
+    <div class="lbody">
+      <p class="head rv" style="--d:.3s">Para minha prima, com muito carinho ❤️</p>
+      <p class="txt big rv" style="--d:1s">Feliz aniversário, prima! ❤️</p>
+      <p class="txt rv" style="--d:1.9s">Hoje é um dia muito especial, e não poderia deixar de te desejar tudo de melhor neste mundo.</p>
+      <p class="txt rv" style="--d:2.8s">Que Deus ilumine seus caminhos, abençoe seus sonhos e te dê muita saúde, paz, felicidade e amor. Que nunca faltem motivos para sorrir e pessoas que te queiram bem.</p>
+      <p class="txt rv" style="--d:3.7s">Sou feliz por ter você como minha prima e desejo que essa nova fase da sua vida seja cheia de conquistas, momentos inesquecíveis e muitas bênçãos.</p>
+      <p class="txt rv" style="--d:4.6s">Você merece tudo de mais bonito que a vida pode oferecer.</p>
+      <p class="txt rv" style="--d:5.5s">Feliz aniversário, prima! Que seu dia seja maravilhoso e que você continue sendo essa pessoa especial. 🎂</p>
+
+      <div class="sig">
+        <p class="who rv" style="--d:6.4s">Com carinho,</p>
+        <span class="signame" style="--d:7.2s">Luan ❤️</span>
+      </div>
+
+      <div class="final rv" style="--d:9.8s">
+        <p class="txt">Que seu novo ciclo seja repleto de felicidade, amor e bênçãos. Você merece tudo de mais lindo! ❤️</p>
+        <button class="btn-hug" id="hug">Enviar um abraço virtual 🤍</button>
+        <p class="hugmsg" id="hugmsg" aria-live="polite"></p>
+      </div>
+    </div>
+  </article>
+</section>
+
+<script>
+const $ = id => document.getElementById(id);
+
+/* Interações vêm antes do canvas: se o efeito de partículas falhar, a carta continua abrindo */
+const env = $('env'), lw = $('lw');
+let opened = false;
+/* Confetes no momento em que a carta abre */
+setTimeout(burst, 5000);
+
+
+$('hug').addEventListener('click', () => {
+  hug();
+  const m = $('hugmsg');
+  m.textContent = 'Um abraço cheio de carinho para você!';
+  m.classList.add('on');
+});
+
+const cv = $('bg'), g = cv.getContext('2d');
+const COL = {
+  petal: ['#f7c6d4', '#f2b5c6', '#fbe3ea'],
+  gold:  ['#e7bf74', '#f5d98f', '#fff3c8'],
+  heart: ['#e88aa8', '#f4b6c8', '#d96f92']
+};
+const rnd = (a, b) => a + Math.random() * (b - a);
+const pick = a => a[(Math.random() * a.length) | 0];
+let W, H, parts = [];
+
+function size() {
+  const d = Math.min(devicePixelRatio || 1, 2);
+  W = innerWidth; H = innerHeight;
+  cv.width = W * d; cv.height = H * d;
+  g.setTransform(d, 0, 0, d, 0, 0);
+}
+size();
+addEventListener('resize', size);
+
+function make(t, x, y, vx, vy) {
+  return { t, x, y, vx, vy, s: t === 'petal' ? rnd(6, 10) : rnd(5, 11),
+    r: rnd(0, 6.28), vr: rnd(-.02, .02), w: rnd(0, 6), a: rnd(.45, .9), c: pick(COL[t]) };
+}
+function heart(x, y, s) {
+  g.beginPath();
+  g.moveTo(x, y + s * .3);
+  g.bezierCurveTo(x, y, x - s, y, x - s, y + s * .3);
+  g.bezierCurveTo(x - s, y + s * .7, x, y + s * .9, x, y + s * 1.2);
+  g.bezierCurveTo(x, y + s * .9, x + s, y + s * .7, x + s, y + s * .3);
+  g.bezierCurveTo(x + s, y, x, y, x, y + s * .3);
+  g.fill();
+}
+function burst() {
+  for (let i = 0; i < 70; i++) parts.push(make('gold', W / 2, H * .42, rnd(-5, 5), rnd(-6, -1)));
+  for (let i = 0; i < 40; i++) parts.push(make('petal', rnd(0, W), -16, 0, rnd(1, 2.2)));
+}
+function hug() {
+  for (let i = 0; i < 90; i++) parts.push(make('heart', rnd(0, W), H + rnd(10, 260), 0, -rnd(3, 7)));
+}
+for (let i = 0; i < 40; i++) parts.push(make(pick(['petal', 'gold', 'heart']), rnd(0, W), rnd(0, H), 0, 0.8));
+
+function frame(t) {
+  g.clearRect(0, 0, W, H);
+  if (parts.length < 110) {
+    const r = Math.random();
+    if (r < .05) parts.push(make('petal', rnd(0, W), -16, 0, rnd(.6, 1.3)));
+    else if (r < .085) parts.push(make('gold', rnd(0, W), H + 10, 0, -rnd(.3, .8)));
+    else if (r < .11) parts.push(make('heart', rnd(0, W), H + 10, 0, -rnd(.4, .9)));
+  }
+  for (let i = parts.length - 1; i >= 0; i--) {
+    const p = parts[i];
+    p.x += p.vx + Math.sin(t / 1200 + p.w) * .35;
+    p.y += p.vy;
+    p.r += p.vr;
+    if (p.y > H + 40 || p.y < -40) { parts.splice(i, 1); continue; }
+
+    g.save();
+    g.globalAlpha = p.a * (.65 + .35 * Math.sin(t / 600 + p.w));
+    g.fillStyle = p.c;
+    if (p.t === 'petal') {
+      g.translate(p.x, p.y); g.rotate(p.r);
+      g.beginPath(); g.ellipse(0, 0, p.s, p.s * .55, 0, 0, Math.PI * 2); g.fill();
+    } else {
+      g.shadowColor = p.c; g.shadowBlur = 10;
+      if (p.t === 'heart') heart(p.x, p.y, p.s);
+      else { g.beginPath(); g.arc(p.x, p.y, p.s / 3, 0, Math.PI * 2); g.fill(); }
+    }
+    g.restore();
+  }
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+
+
+
+/* Música de piano, sintetizada no navegador, iniciada só por clique */
+const M = {
+  ctx: null, out: null, timer: null, on: false, bar: 0,
+  chords: [[261.63, 329.63, 392.00], [220.00, 261.63, 329.63], [174.61, 220.00, 261.63], [196.00, 246.94, 293.66]],
+  init() {
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return false;
+    if (!this.ctx) {
+      this.ctx = new AC();
+      this.out = this.ctx.createGain();
+      this.out.gain.value = 0;
+      this.out.connect(this.ctx.destination);
+    }
+    return true;
+  },
+  note(f, t, vol) {
+    const c = this.ctx, o = c.createOscillator(), o2 = c.createOscillator();
+    const g1 = c.createGain(), g2 = c.createGain();
+    o.type = 'sine'; o.frequency.value = f;
+    o2.type = 'triangle'; o2.frequency.value = f * 2;
+    g2.gain.value = .18;
+    o.connect(g1); o2.connect(g2); g2.connect(g1); g1.connect(this.out);
+    g1.gain.setValueAtTime(.0001, t);
+    g1.gain.exponentialRampToValueAtTime(vol, t + .012);
+    g1.gain.exponentialRampToValueAtTime(.0001, t + 3.2);
+    o.start(t); o2.start(t); o.stop(t + 3.3); o2.stop(t + 3.3);
+  },
+  play() {
+    const ch = this.chords[this.bar++ % this.chords.length], t = this.ctx.currentTime + .05;
+    this.note(ch[0] / 2, t, .05);
+    [ch[0], ch[1], ch[2], ch[1]].forEach((f, i) => this.note(f, t + i * .55, .07));
+  },
+  toggle() {
+    if (!this.init()) { $('music').hidden = true; return; }
+    if (this.on) {
+      clearInterval(this.timer);
+      this.on = false;
+      this.out.gain.setTargetAtTime(0, this.ctx.currentTime, .3);
+    } else {
+      this.ctx.resume();
+      this.out.gain.setTargetAtTime(.45, this.ctx.currentTime, .4);
+      this.play();
+      this.timer = setInterval(() => this.play(), 2200);
+      this.on = true;
+    }
+    label();
+  }
+};
+const mb = $('music');
+function label() {
+  mb.textContent = M.on ? '🔊 Pausar música' : (M.bar ? '🔈 Continuar música' : '🎵 Ativar música');
+  mb.setAttribute('aria-pressed', M.on);
+}
+if (window.AudioContext || window.webkitAudioContext) mb.hidden = false;
+mb.addEventListener('click', () => M.toggle());
+</script>
+</body>
+</html>
